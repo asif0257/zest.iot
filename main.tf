@@ -28,16 +28,16 @@ module "nat_gateway" {
 #   ]
 # }
 
-module "compute" {
-  source           = "./compute"
-  instance_configs = var.instance_configs
+#module "compute" {
+  #source           = "./compute"
+  #instance_configs = var.instance_configs
 
-  depends_on = [
-    module.subnet,  # Ensure subnets are created
-    module.nat_gateway      # Ensure NAT gateway is created
-  ]
-
-}
+  #depends_on = [
+   # module.subnet,  # Ensure subnets are created
+  #  module.nat_gateway      # Ensure NAT gateway is created
+ # ]
+#
+#}
 
 module "firewalls" {
   source        = "./firewalls"
