@@ -1,24 +1,24 @@
-vpc_name    = "my-vpc"
-region      = "us-central1"
-router_name = "my-router"
-nat_name    = "my-nat-gateway"
+vpc_name    = "aisats-vpc"
+region      = "asia-south1"
+router_name = "aisats-router-nat"
+nat_name    = "aisats-nat"
 
 subnet_configs = [
   {
-    name = "public-subnet"
-    cidr = "10.0.1.0/24"
+    name = "aisats-public"
+    cidr = "10.0.4.0/24"
   },
   {
-    name = "private-subnet-1"
-    cidr = "10.0.2.0/24"
-  },
-  {
-    name = "private-subnet-2"
+    name = "aisats-private-dev"
     cidr = "10.0.3.0/24"
   },
   {
-    name = "private-subnet-3"
-    cidr = "10.0.4.0/24"
+    name = "aisats-private-qa"
+    cidr = "10.0.2.0/24"
+  },
+  {
+    name = "aisats-private-prod"
+    cidr = "10.0.1.0/24"
   },
 ]
 
@@ -36,20 +36,20 @@ subnet_configs = [
 
 firewalls = [
   {
-    name          = "allow-ssh-iap"
+    name          = "allow-health-check"
+    direction     = "INGRESS"
+    priority      = 1000
+    protocol      = "tcp"
+    ports         = ["80,443"]
+    source_ranges = ["130.211.0.0/22,35.191.0.0/16, 209.85.152.0/22, 209.85.204.0/22"]
+  },
+  {
+    name          = "allow-iap-access"
     direction     = "INGRESS"
     priority      = 1000
     protocol      = "tcp"
     ports         = ["22"]
     source_ranges = ["35.235.240.0/20"]
-  },
-  {
-    name          = "allow-lb-healthcheck"
-    direction     = "INGRESS"
-    priority      = 1000
-    protocol      = "tcp"
-    ports         = ["0-65535"]
-    source_ranges = ["130.211.0.0/22","35.191.0.0/16"]
   },
   # Add more rules as needed
 ]
