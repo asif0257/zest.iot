@@ -22,17 +22,17 @@ subnet_configs = [
   },
 ]
 
-instance_configs = [
-  {
-    name         = "instance-1"
-    machine_type = "n1-standard-1"
-    zone         = "us-central1-a"
-    image        = "projects/ubuntu-os-cloud/global/images/family/ubuntu-2004-lts"
-    subnet       = "private-subnet-1"
+#instance_configs = [
+ # {
+  #  name         = "instance-1"
+   # machine_type = "n1-standard-1"
+    #zone         = "us-central1-a"
+    #image        = "projects/ubuntu-os-cloud/global/images/family/ubuntu-2004-lts"
+    #subnet       = "private-subnet-1"
     # subnet       = module.subnet.subnets["private-subnet-1"]
-  },
+  #},
   # Add 13 more instances as needed
-]
+#]
 
 firewalls = [
   {
